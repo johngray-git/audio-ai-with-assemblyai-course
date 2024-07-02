@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from db import mongo_setup
 from infrastructure import app_secrets
 from services import web_sync_service
+from services import background_service
 
 development_mode: bool = True
 
@@ -25,6 +26,7 @@ async def app_lifespan(_):
     asyncio.create_task(web_sync_service.load_starter_data())
 
     # TODO: Register background jobs
+    asyncio.create_task(background_service.worker_function())
 
     # TODO: Register search task
 

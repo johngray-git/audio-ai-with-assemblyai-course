@@ -11,6 +11,7 @@ from db import mongo_setup
 from infrastructure import cache_buster, app_setup, app_secrets
 from viewmodels.shared.viewmodel_base import ViewModelBase
 from views import account_views
+from views import ai_views
 from views import home_views
 from views import podcasts_views
 
@@ -56,7 +57,7 @@ def configure_routing():
     app.include_router(home_views.router)
     app.include_router(account_views.router)
     app.include_router(podcasts_views.router)
-
+    app.include_router(ai_views.router)
 
 def configure_templating():
     folder = (Path(__file__).parent / 'templates').as_posix()
